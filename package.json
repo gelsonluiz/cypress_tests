@@ -1,0 +1,26 @@
+{
+  "name": "tests_01",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "cypress run",
+    "cypress:open": "NODE_OPTIONS='' npx cypress open",
+    "report:merge": "mochawesome-merge cypress/reports/*.json > cypress/reports/output.json",
+    "report:generate": "mochawesome-report-generator cypress/reports/output.json --reportDir cypress/reports/html",
+    "report": "npm run report:merge && npm run report:generate"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "cypress": "^14.4.0",
+    "cypress-file-upload": "^5.0.8",
+    "cypress-mochawesome-reporter": "^3.8.2",
+    "cypress-multi-reporters": "^2.0.5",
+    "mocha-junit-reporter": "^2.2.1",
+    "mochawesome": "^7.1.3",
+    "mochawesome-merge": "^5.0.0",
+    "mochawesome-report-generator": "^6.2.0"
+  }
+}
