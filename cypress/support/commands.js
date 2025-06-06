@@ -139,7 +139,7 @@ Cypress.Commands.add('gravarAuto', () => {
 
   // espera o loader aparecer e depois sumir
   cy.get('.loading').should('exist');
-  cy.get('.loading', { timeout: 60000 }).should('not.exist');
+  cy.get('.loading', { timeout: 30000 }).should('not.exist');
   cy.get('[ng-switch="message.enableHtml"] > .ng-binding').should('contain', 'Operação realizada com sucesso.');
   cy.wait(500); 
   cy.screenshot('auto_infracao_gravado');

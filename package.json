@@ -7,13 +7,18 @@
     "cypress:open": "NODE_OPTIONS='' npx cypress open",
     "report:merge": "mochawesome-merge cypress/reports/*.json > cypress/reports/output.json",
     "report:generate": "mochawesome-report-generator cypress/reports/output.json --reportDir cypress/reports/html",
-    "report": "npm run report:merge && npm run report:generate"
+    "report": "npm run report:merge && npm run report:generate",
+    "e2e": "cypress run --env allure=true",
+    "report:allure": "allure generate allure-results --clean -o allure-report && allure open  allure-report",
+    "allure:clean": "rm -rf allure-results allure-report || true",
+    "test:allure": "npm run e2e && npm run allure:clean && npm run report:allure"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "devDependencies": {
+    "@shelex/cypress-allure-plugin": "^2.41.2",
     "cypress": "^14.4.0",
     "cypress-file-upload": "^5.0.8",
     "cypress-mochawesome-reporter": "^3.8.2",

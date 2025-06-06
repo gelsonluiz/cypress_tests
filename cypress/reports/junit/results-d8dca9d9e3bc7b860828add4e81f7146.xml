@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="35.410" tests="1" failures="0">
+  <testsuite name="Root Suite" timestamp="2025-06-06T13:49:07" tests="0" file="cypress\e2e\04_auto_manual_CI_E.cy.js" time="0.000" failures="0">
+  </testsuite>
+  <testsuite name="Condutor Identificado Estrangeiro" timestamp="2025-06-06T13:49:07" tests="1" time="35.374" failures="0">
+    <testcase name="Condutor Identificado Estrangeiro 04_auto_manual_CI_E.cy" time="35.265" classname="04_auto_manual_CI_E.cy">
+    </testcase>
+  </testsuite>
+</testsuites>

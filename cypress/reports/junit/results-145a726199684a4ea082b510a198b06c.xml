@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="46.234" tests="1" failures="0">
+  <testsuite name="Root Suite" timestamp="2025-06-06T13:27:03" tests="0" file="cypress\e2e\05_auto_manual_CI_NH_CPF.cy.js" time="0.000" failures="0">
+  </testsuite>
+  <testsuite name="Cadastro de auto - Condutor identificado - Não Habilitado - CPF" timestamp="2025-06-06T13:27:03" tests="1" time="46.233" failures="0">
+    <testcase name="Cadastro de auto - Condutor identificado - Não Habilitado - CPF 05_auto_manual_CI_NH_CPF.cy" time="46.057" classname="05_auto_manual_CI_NH_CPF.cy">
+    </testcase>
+  </testsuite>
+</testsuites>

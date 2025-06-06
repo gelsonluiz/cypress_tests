@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="37.858" tests="1" failures="0">
+  <testsuite name="Root Suite" timestamp="2025-06-06T13:49:45" tests="0" file="cypress\e2e\10_auto_inconsistente.cy.js" time="0.000" failures="0">
+  </testsuite>
+  <testsuite name="Auto Inconsistente" timestamp="2025-06-06T13:49:45" tests="1" time="37.826" failures="0">
+    <testcase name="Auto Inconsistente Auto Inconsistente" time="37.717" classname="Auto Inconsistente">
+    </testcase>
+  </testsuite>
+</testsuites>

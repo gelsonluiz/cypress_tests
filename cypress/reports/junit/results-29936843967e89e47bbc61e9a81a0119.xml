@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="36.425" tests="1" failures="0">
+  <testsuite name="Root Suite" timestamp="2025-06-06T13:47:48" tests="0" file="cypress\e2e\02_auto_manual_NI_Anexo.cy.js" time="0.000" failures="0">
+  </testsuite>
+  <testsuite name="Cadastro de auto - Condutor não identificado com Anexo" timestamp="2025-06-06T13:47:48" tests="1" time="36.387" failures="0">
+    <testcase name="Cadastro de auto - Condutor não identificado com Anexo 02_auto_manual_NI_Anexo.cy" time="36.232" classname="02_auto_manual_NI_Anexo.cy">
+    </testcase>
+  </testsuite>
+</testsuites>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="149.514" tests="1" failures="0">
+  <testsuite name="Root Suite" timestamp="2025-06-06T12:46:58" tests="0" file="cypress\e2e\09_auto_manual_CI_ET_Dgl.cy.js" time="0.000" failures="0">
+  </testsuite>
+  <testsuite name="Cadastro de auto - Veículo = MS (Proprietário PJ) - Condutor não identificado" timestamp="2025-06-06T12:46:58" tests="1" time="149.511" failures="0">
+    <testcase name="Cadastro de auto - Veículo = MS (Proprietário PJ) - Condutor não identificado 09_auto_manual_CI_ET_Dgl.cy" time="149.189" classname="09_auto_manual_CI_ET_Dgl.cy">
+    </testcase>
+  </testsuite>
+</testsuites>
