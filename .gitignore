@@ -1,0 +1,10 @@
+# Cypress test results (relatórios e vídeos)
+cypress/reports/
+cypress/screenshots/
+cypress/videos/
+allure-results/
+allure-report/
+mochawesome-report/
+*.html
+*.json
+output.json

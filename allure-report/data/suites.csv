@@ -1,6 +1,0 @@
-"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
-"","38742","Auto Inconsistente","","Fri Jun 06 09:56:53 GMT-04:00 2025","passed","Fri Jun 06 09:57:32 GMT-04:00 2025","","Auto Inconsistente","",""
-"","35228","04_auto_manual_CI_E.cy","","Fri Jun 06 09:49:07 GMT-04:00 2025","passed","Fri Jun 06 09:49:42 GMT-04:00 2025","","Condutor Identificado Estrangeiro","",""
-"","121856","01_auto_manual_NI.cy","","Fri Jun 06 09:54:48 GMT-04:00 2025","passed","Fri Jun 06 09:56:50 GMT-04:00 2025","","Condutor não identificado","",""
-"","36982","03_auto_manual_CI_H","","Fri Jun 06 09:48:27 GMT-04:00 2025","passed","Fri Jun 06 09:49:04 GMT-04:00 2025","","Cadastro de auto - Condutor Identificado - Habilitado","",""
-"","36192","02_auto_manual_NI_Anexo.cy","","Fri Jun 06 09:47:48 GMT-04:00 2025","passed","Fri Jun 06 09:48:24 GMT-04:00 2025","","Cadastro de auto - Condutor não identificado com Anexo","",""
