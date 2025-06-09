@@ -1,10 +1,13 @@
-# Cypress test results (relatórios e vídeos)
 cypress/reports/
 cypress/screenshots/
 cypress/videos/
 allure-results/
 allure-report/
 mochawesome-report/
+node_modules/
+/.env/
+/logs/
 *.html
 *.json
+*.tmp
 output.json

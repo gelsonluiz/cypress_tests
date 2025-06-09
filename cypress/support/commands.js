@@ -43,37 +43,37 @@ Cypress.Commands.add('validaTelaServicosAtendimento', () => {
 });
 
 Cypress.Commands.add('acessarCadastroAtendimento', () => {
-      context('Acessar a tela de auto de infração manual', () => {
-        cy.url().should('include', '/site/index'); // valida que a URL contém '/login'
-        cy.wait(3000); // espera 2 segundos para garantir que a página carregou
+  context('Acessar a tela de auto de infração manual', () => {
+    cy.url().should('include', '/site/index'); // valida que a URL contém '/login'
+    cy.wait(3000); // espera 2 segundos para garantir que a página carregou
 
-        cy.contains('a', 'INFRAÇÃO', { timeout: 10000 })
-        .scrollIntoView()
-        .should('be.visible')
-        .click();
+    cy.contains('a', 'INFRAÇÃO', { timeout: 10000 })
+    .scrollIntoView()
+    .should('be.visible')
+    .click();
 
-        cy.contains('a', 'AUTO INFRAÇÃO', { timeout: 10000 })
-        .scrollIntoView()
-        .should('be.visible')
-        .click();
+    cy.contains('a', 'AUTO INFRAÇÃO', { timeout: 10000 })
+    .scrollIntoView()
+    .should('be.visible')
+    .click();
 
-        // Acessa a tela de Auto de Infração Manual
-        // cy.contains('a', 'AUTO DE INFRAÇÃO MANUAL', { timeout: 10000 })
-        // .scrollIntoView()
-        //  .should('be.visible')
-        //  .click();
-        //cy.url().should('include', '/autoinfracaomanual'); 
+    // Acessa a tela de Auto de Infração Manual
+    // cy.contains('a', 'AUTO DE INFRAÇÃO MANUAL', { timeout: 10000 })
+    // .scrollIntoView()
+    //  .should('be.visible')
+    //  .click();
+    //cy.url().should('include', '/autoinfracaomanual'); 
 
-        // Acessa a tela de Auto de Infração Manual pelo atendimento
-        cy.get('a[href="#/atd/inf/atendimento"]').eq(0).should('have.text', 'ATENDIMENTO').click();
-        cy.url().should('include', '/atendimento'); 
+    // Acessa a tela de Auto de Infração Manual pelo atendimento
+    cy.get('a[href="#/atd/inf/atendimento"]').eq(0).should('have.text', 'ATENDIMENTO').click();
+    cy.url().should('include', '/atendimento'); 
 
-        cy.contains('button', 'Filtro').should('be.visible');
+    cy.contains('button', 'Filtro').should('be.visible');
 
-        cy.contains('button', 'Novo').click();
-        cy.wait(1500);
-      })
-    });
+    cy.contains('button', 'Novo').click();
+    cy.wait(1500);
+  })
+});
 
 Cypress.Commands.add('acessarAutoInfracaoInconsistente', () => {
     context('Acessar a tela de auto de infração inconsitente', () => {

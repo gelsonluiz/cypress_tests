@@ -38,48 +38,48 @@ describe('Cadastro de auto - Veículo = MS (Proprietário PJ) - Condutor não id
       cy.incluirAgenteAutuador();
       cy.GravarAutoInfracao();
     });
-  //   }); 
-  //   context('Veículo == MS / Proprietário PJ', () => {
-  //   const autoInfracao = gerarAutoInfracao();
-  //   cy.get('@automoveis').then((dados) => {
-  //     const automovel = dados.automoveis[1]; 
-  //     cy.get('#btnBack').should('be.visible').and('contain', 'Voltar').click();
-  //     cy.wait(500);
-  //     cy.contains('button', 'Novo').should('be.visible').click({ force: true });
-  //     cy.wait(1500);
-  //     cy.InformarDadosInfracao(autoInfracao, automovel.placa, automovel.cpfCnpj)
-  //     cy.cadastrarInfracao_CI_ET_Mlg();
-  //     cy.incluirAgenteAutuador();
-  //     cy.GravarAutoInfracao();
-  //   });
-  //   }); 
-  //   context('Veículo <> MS / Proprietário PF', () => {
-  //   const autoInfracao = gerarAutoInfracao();
-  //   cy.get('@automoveis').then((dados) => {
-  //     const automovel = dados.automoveis[2]; 
-  //     cy.get('#btnBack').should('be.visible').and('contain', 'Voltar').click();
-  //     cy.wait(500);
-  //     cy.contains('button', 'Novo').should('be.visible').click({ force: true });
-  //     cy.wait(1500);
-  //     cy.InformarDadosInfracao(autoInfracao, automovel.placa, automovel.cpfCnpj)
-  //     cy.cadastrarInfracao_CI_ET_Mlg();
-  //     cy.incluirAgenteAutuador();
-  //     cy.GravarAutoInfracao();
-  //   });
-  //   }); 
-  //   context('Veículo <> MS / Proprietário PJ', () => {
-  //   const autoInfracao = gerarAutoInfracao();
-  //   cy.get('@automoveis').then((dados) => {
-  //     const automovel = dados.automoveis[3]; 
-  //     cy.get('#btnBack').should('be.visible').and('contain', 'Voltar').click();
-  //     cy.wait(500);
-  //     cy.contains('button', 'Novo').should('be.visible').click({ force: true });
-  //     cy.wait(1500);
-  //     cy.InformarDadosInfracao(autoInfracao, automovel.placa, automovel.cpfCnpj)
-  //     cy.cadastrarInfracao_CI_ET_Mlg();
-  //     cy.incluirAgenteAutuador();
-  //     cy.GravarAutoInfracao();
-  //   });
+    }); 
+    context('Veículo == MS / Proprietário PJ', () => {
+    const autoInfracao = gerarAutoInfracao();
+    cy.get('@automoveis').then((dados) => {
+      const automovel = dados.automoveis[1]; 
+      cy.get('#btnBack').should('be.visible').and('contain', 'Voltar').click();
+      cy.wait(500);
+      cy.contains('button', 'Novo').should('be.visible').click({ force: true });
+      cy.wait(1500);
+      cy.InformarDadosInfracao(autoInfracao, automovel.placa, automovel.cpfCnpj)
+      cy.cadastrarInfracao_CI_ET_Mlg();
+      cy.incluirAgenteAutuador();
+      cy.GravarAutoInfracao();
+    });
+    }); 
+    context('Veículo <> MS / Proprietário PF', () => {
+    const autoInfracao = gerarAutoInfracao();
+    cy.get('@automoveis').then((dados) => {
+      const automovel = dados.automoveis[2]; 
+      cy.get('#btnBack').should('be.visible').and('contain', 'Voltar').click();
+      cy.wait(500);
+      cy.contains('button', 'Novo').should('be.visible').click({ force: true });
+      cy.wait(1500);
+      cy.InformarDadosInfracao(autoInfracao, automovel.placa, automovel.cpfCnpj)
+      cy.cadastrarInfracao_CI_ET_Mlg();
+      cy.incluirAgenteAutuador();
+      cy.GravarAutoInfracao();
+    });
+    }); 
+    context('Veículo <> MS / Proprietário PJ', () => {
+    const autoInfracao = gerarAutoInfracao();
+    cy.get('@automoveis').then((dados) => {
+      const automovel = dados.automoveis[3]; 
+      cy.get('#btnBack').should('be.visible').and('contain', 'Voltar').click();
+      cy.wait(500);
+      cy.contains('button', 'Novo').should('be.visible').click({ force: true });
+      cy.wait(1500);
+      cy.InformarDadosInfracao(autoInfracao, automovel.placa, automovel.cpfCnpj)
+      cy.cadastrarInfracao_CI_ET_Mlg();
+      cy.incluirAgenteAutuador();
+      cy.GravarAutoInfracao();
+    });
   }); 
 });  
 });
