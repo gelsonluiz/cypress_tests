@@ -1,6 +1,6 @@
 import { gerarAutoInfracao, gerarPlaca, dataHoje } from '../support/utils';
 
-const tipo = Cypress.env('tipoTeste') || 'simples';
+const tipoTeste = Cypress.env('tipoTeste') || 'parcial';
 
 Cypress.Commands.add('cadastrarInfracao_NI', () => {
     cy.get('input[ng-model="data.entidade.codigoInfracao"]').type('76331');
@@ -21,6 +21,7 @@ describe('Condutor não identificado', () => {
 
   it('01_auto_manual_NI.cy', () => {
     context('Veículo == MS / Proprietário PF', () => {
+      cy.log(tipoTeste)
       const autoInfracao = gerarAutoInfracao();
       cy.get('@automoveis').then((dados) => {
       const automovel = dados.automoveis[0]; 
@@ -28,12 +29,13 @@ describe('Condutor não identificado', () => {
       cy.InformarDadosInfracao(autoInfracao, automovel.placa, automovel.cpfCnpj)
       cy.cadastrarInfracao_NI();
       cy.incluirAgenteAutuador();
-      cy.GravarAutoInfracao();
+      //cy.GravarAutoInfracao();
       })
     });
     
-    if (tipo === 'completo') {
+    if (tipoTeste === 'completo') {
       context('Veículo == MS / Proprietário PJ', () => {
+        cy.log('entrou');
         const autoInfracao = gerarAutoInfracao();
         cy.get('@automoveis').then((dados) => {
         const automovel = dados.automoveis[1]; 

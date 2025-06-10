@@ -11,7 +11,7 @@
     "e2e": "cypress run --env allure=true",
     "report:allure": "allure generate allure-results --clean -o allure-report && allure open  allure-report",
     "allure:clean": "rmdir /s /q allure-results && rmdir /s /q allure-report",
-    "test:allure": "npm run e2e && npm run allure:clean && npm run report:allure"
+    "test:allure": "npm run e2e && npm run report:allure"
   },
   "keywords": [],
   "author": "",
