@@ -33,12 +33,9 @@ module.exports = defineConfig({
   // Diretórios de artefatos
   screenshotsFolder: "cypress/screenshots/",
   videosFolder: "cypress/videos/",
-
   // grava vídeo dos testes
   video: true,
-
   // aumenta o timeout se necessário
   defaultCommandTimeout: 8000,
-
   pageLoadTimeout: 60000,
 });

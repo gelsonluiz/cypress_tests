@@ -9,9 +9,9 @@ Cypress.Commands.add('cadastrarInfracao_CI_ET_Mlg', () => {
   cy.contains('td', 'Mg/l').click();
   cy.wait(500)
   cy.get('input[ng-model="data.entidade.equipamentoInstrumentoAfericaoUtilizado"]').type('ETILOMETRO');
-  cy.get('input[ng-model="data.entidade.medicaoRealizada"]').type('1.75'); 
-  cy.get('input[ng-model="data.entidade.limiteRegulamentado"]').type('0.75');
-  cy.get('input[ng-model="data.entidade.valorConsiderado"]').should('have.value', '1,75');
+  cy.get('input[ng-model="data.entidade.medicaoRealizada"]').type('0.75'); 
+  cy.get('input[ng-model="data.entidade.limiteRegulamentado"]').type('0.34');
+  cy.get('input[ng-model="data.entidade.valorConsiderado"]').should('have.value', '0,75');
   cy.get('select[ng-model="data.entidade.condutorIdentificado"]').should('have.value','string:SIM');
   cy.get('select[ng-model="data.entidade.tipoCondutor"]').select('Habilitado');
   cy.get('input[ng-model="data.entidade.numeroDocumentoInfrator"]').type('00330851101');
@@ -20,7 +20,7 @@ Cypress.Commands.add('cadastrarInfracao_CI_ET_Mlg', () => {
   cy.get('textarea[ng-model="data.entidade.observacao"]').type('Veículo MS (Proprietário PF) - Infrações que utilizam equipamentos eletrônicos - etilômetro.');
 });
 
-describe('Cadastro de auto - Veículo = MS (Proprietário PJ) - Condutor não identificado', () => {
+describe('Cadastro de auto - Teste alcoolemia Etilômetro mg', () => {
       
   beforeEach(() => {
     cy.fixture('automoveis.json').as('automoveis');

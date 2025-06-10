@@ -1,5 +1,7 @@
 import { gerarAutoInfracao, gerarPlaca, dataHoje } from '../support/utils';
 
+const tipo = Cypress.env('tipoTeste') || 'simples';
+
 Cypress.Commands.add('cadastrarInfracao_NI', () => {
     cy.get('input[ng-model="data.entidade.codigoInfracao"]').type('76331');
     cy.wait(1000)
@@ -30,49 +32,51 @@ describe('Condutor não identificado', () => {
       })
     });
     
-    context('Veículo == MS / Proprietário PJ', () => {
-      const autoInfracao = gerarAutoInfracao();
-      cy.get('@automoveis').then((dados) => {
-      const automovel = dados.automoveis[1]; 
-      cy.get('#btnBack').should('be.visible').and('contain', 'Voltar').click();
-      cy.wait(500);
-      cy.contains('button', 'Novo').should('be.visible').click({ force: true });
-      cy.wait(1500);
-      cy.InformarDadosInfracao(autoInfracao, automovel.placa, automovel.cpfCnpj)
-      cy.cadastrarInfracao_NI();
-      cy.incluirAgenteAutuador();
-      cy.GravarAutoInfracao();
-      })
-    });
-
-    context('Veículo <> MS / Proprietário PF', () => {
-      const autoInfracao = gerarAutoInfracao();
-      cy.get('@automoveis').then((dados) => {
-      const automovel = dados.automoveis[2]; 
-      cy.get('#btnBack').should('be.visible').and('contain', 'Voltar').click();
-      cy.wait(500);
-      cy.contains('button', 'Novo').should('be.visible').click({ force: true });
-      cy.wait(1500);
-      cy.InformarDadosInfracao(autoInfracao, automovel.placa, automovel.cpfCnpj)
-      cy.cadastrarInfracao_NI();
-      cy.incluirAgenteAutuador();
-      cy.GravarAutoInfracao();
-      })
-    });
-
-    context('Veículo <> MS / Proprietário PJ', () => {
-      const autoInfracao = gerarAutoInfracao();
-      cy.get('@automoveis').then((dados) => {
-      const automovel = dados.automoveis[3]; 
-      cy.get('#btnBack').should('be.visible').and('contain', 'Voltar').click();
-      cy.wait(500);
-      cy.contains('button', 'Novo').should('be.visible').click({ force: true });
-      cy.wait(1500);
-      cy.InformarDadosInfracao(autoInfracao, automovel.placa, automovel.cpfCnpj)
-      cy.cadastrarInfracao_NI();
-      cy.incluirAgenteAutuador();
-      cy.GravarAutoInfracao();
-      })
-    });
+    if (tipo === 'completo') {
+      context('Veículo == MS / Proprietário PJ', () => {
+        const autoInfracao = gerarAutoInfracao();
+        cy.get('@automoveis').then((dados) => {
+        const automovel = dados.automoveis[1]; 
+        cy.get('#btnBack').should('be.visible').and('contain', 'Voltar').click();
+        cy.wait(500);
+        cy.contains('button', 'Novo').should('be.visible').click({ force: true });
+        cy.wait(1500);
+        cy.InformarDadosInfracao(autoInfracao, automovel.placa, automovel.cpfCnpj)
+        cy.cadastrarInfracao_NI();
+        cy.incluirAgenteAutuador();
+        cy.GravarAutoInfracao();
+        })
+      });
+  
+      context('Veículo <> MS / Proprietário PF', () => {
+        const autoInfracao = gerarAutoInfracao();
+        cy.get('@automoveis').then((dados) => {
+        const automovel = dados.automoveis[2]; 
+        cy.get('#btnBack').should('be.visible').and('contain', 'Voltar').click();
+        cy.wait(500);
+        cy.contains('button', 'Novo').should('be.visible').click({ force: true });
+        cy.wait(1500);
+        cy.InformarDadosInfracao(autoInfracao, automovel.placa, automovel.cpfCnpj)
+        cy.cadastrarInfracao_NI();
+        cy.incluirAgenteAutuador();
+        cy.GravarAutoInfracao();
+        })
+      });
+  
+      context('Veículo <> MS / Proprietário PJ', () => {
+        const autoInfracao = gerarAutoInfracao();
+        cy.get('@automoveis').then((dados) => {
+        const automovel = dados.automoveis[3]; 
+        cy.get('#btnBack').should('be.visible').and('contain', 'Voltar').click();
+        cy.wait(500);
+        cy.contains('button', 'Novo').should('be.visible').click({ force: true });
+        cy.wait(1500);
+        cy.InformarDadosInfracao(autoInfracao, automovel.placa, automovel.cpfCnpj)
+        cy.cadastrarInfracao_NI();
+        cy.incluirAgenteAutuador();
+        cy.GravarAutoInfracao();
+        })
+      });      
+    };
    });
 });

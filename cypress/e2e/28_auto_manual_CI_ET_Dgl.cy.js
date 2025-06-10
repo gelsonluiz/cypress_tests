@@ -20,7 +20,7 @@ Cypress.Commands.add('cadastrarInfracao_CI_ET_Dlg', () => {
   cy.get('textarea[ng-model="data.entidade.observacao"]').type('Veículo MS (Proprietário PF) - Infrações que utilizam equipamentos eletrônicos - etilômetro.');
 });
 
-describe('Cadastro de auto - Veículo = MS (Proprietário PJ) - Condutor não identificado', () => {
+describe('Cadastro de auto - Teste alcoolemia Exame de sangue dl', () => {
       
   beforeEach(() => {
     cy.fixture('automoveis.json').as('automoveis');

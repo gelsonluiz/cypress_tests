@@ -1,14 +1,12 @@
 import 'cypress-file-upload';
 
-
 Cypress.Commands.add('login', (usuario, senha) => {
-    cy.visit('https://dev.detran.ms.gov.br/detran/public/login/index.html');
+    cy.visit('/detran/public/login/index.html');
     cy.get('#usuario').type(usuario);
     cy.get('#password').type(senha, { sensitive: true });
     cy.get('#btnAcessar').click();
     cy.wait(2000); 
 });
-
 
 //cy.loginViaUi({name: Cypress.env('usuario'),password: Cypress.env('senha')});
 Cypress.Commands.add('loginViaUi', (user) => {
@@ -23,14 +21,12 @@ Cypress.Commands.add('loginViaUi', (user) => {
   })
 })
 
-
 Cypress.Commands.add('validaTelaPesquisaAutoInfracaoManual', () => {
   cy.contains('a', 'FILTRO', { timeout: 10000 })
     .scrollIntoView()
     .should('be.visible')
     .click();
 } );
-
 
 Cypress.Commands.add('validaTelaServicosAtendimento', () => {
     // Valida se o auto foi cadastrado corretamente.
