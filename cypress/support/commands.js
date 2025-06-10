@@ -1,4 +1,5 @@
 import 'cypress-file-upload';
+const agenteAutuador = Cypress.env('agente');
 
 Cypress.Commands.add('login', (usuario, senha) => {
     cy.visit('/detran/public/login/index.html');
@@ -119,7 +120,7 @@ Cypress.Commands.add('InformarDadosInfracao', (autoInfracao, placa, cpfCnpj) => 
 });
 
 Cypress.Commands.add('incluirAgenteAutuador', () => {
-  cy.get('input[ng-model="data.entidade.matriculaAgenteAutuador"]').type('651611312');
+  cy.get('input[ng-model="data.entidade.matriculaAgenteAutuador"]').type(agenteAutuador);
   cy.get('input[ng-model="data.entidade.nomeAgenteAutuador"]').click();
   cy.wait(500);
   cy.get('select[ng-model="data.processoInfracaoTipoAutuador"]').select('112100 - DETRAN - MS');

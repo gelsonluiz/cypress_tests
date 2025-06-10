@@ -1,4 +1,5 @@
 import { gerarAutoInfracao, gerarPlaca, dataHoje } from '../support/utils';
+const agenteAutuador = Cypress.env('agente');
 
 Cypress.Commands.add('cadastrarInfracaoManual', () => {
   context('Preencher campos do cadastro de autos inconsistentes manualmente', () => {
@@ -28,7 +29,7 @@ Cypress.Commands.add('cadastrarDadosInfracao', (autoInfracao, codigoInfracao) =>
     cy.get('input[ng-model="data.entidade.dataInfracao"]').type('20/05/2025');
     cy.get('input[ng-model="data.entidade.horaInfracao"]').type('10:30');
     cy.get('input[ng-model="data.entidade.codigoMunicipioInfracao"]').type('9051');
-    cy.get('input[ng-model="data.entidade.matriculaAgenteAutuador"]').type('651611312');
+    cy.get('input[ng-model="data.entidade.matriculaAgenteAutuador"]').type(agenteAutuador);
     cy.get('input[ng-model="data.entidade.nomeAgenteAutuador"]').click();
     cy.wait(500);
     cy.get('select[ng-model="data.processoInfracaoTipoAutuador"]').select('112100 - DETRAN - MS');
@@ -41,7 +42,7 @@ Cypress.Commands.add('cadastrarDadosInfracao', (autoInfracao, codigoInfracao) =>
 Cypress.Commands.add('cadastrarDadosInfracaoApenasObrigatorios', (autoInfracao, codigoInfracao) => {
   context('Preencher campos do cadastro de infracao', () => {
     cy.get('input[ng-model="data.entidade.numeroAutoInfracao"]').type(autoInfracao);
-    cy.get('input[ng-model="data.entidade.matriculaAgenteAutuador"]').type('651611312');
+    cy.get('input[ng-model="data.entidade.matriculaAgenteAutuador"]').type(agenteAutuador);
     cy.get('input[ng-model="data.entidade.nomeAgenteAutuador"]').click();
     cy.wait(500);
     cy.get('select[ng-model="data.entidade.motivoInconsistente"]').eq(0).select('Rasurado');

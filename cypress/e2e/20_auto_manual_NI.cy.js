@@ -29,7 +29,7 @@ describe('Condutor não identificado', () => {
       cy.InformarDadosInfracao(autoInfracao, automovel.placa, automovel.cpfCnpj)
       cy.cadastrarInfracao_NI();
       cy.incluirAgenteAutuador();
-      //cy.GravarAutoInfracao();
+      cy.GravarAutoInfracao();
       })
     });
     
