@@ -6,9 +6,9 @@ Cypress.Commands.add('cadastrarInfracao_NI', () => {
     cy.get('input[ng-model="data.entidade.codigoInfracao"]').type('76331');
     cy.wait(1000)
     cy.get('input[ng-model="data.entidade.tipificacaoInfracao"]').click();
-    cy.wait(1000)
+    cy.wait(2000)
     cy.get('select[ng-model="data.entidade.condutorIdentificado"]').select('Não'); 
-    cy.get('select[ng-model="data.entidade.indicativoAssinatura"]').select('Não');
+    cy.get('select[ng-model="data.entidade.indicativoAssinatura"]').should('be.disabled');
     cy.get('textarea[ng-model="data.entidade.observacao"]').type('Veículo = MS (Proprietário PF) - Condutor não identificado');
 });
 
@@ -24,7 +24,7 @@ describe('Condutor não identificado', () => {
       cy.log(tipoTeste)
       const autoInfracao = gerarAutoInfracao();
       cy.get('@automoveis').then((dados) => {
-      const automovel = dados.automoveis[0]; 
+      const automovel = dados.automoveis[1]; 
       cy.acessarCadastroAtendimento()
       cy.InformarDadosInfracao(autoInfracao, automovel.placa, automovel.cpfCnpj)
       cy.cadastrarInfracao_NI();

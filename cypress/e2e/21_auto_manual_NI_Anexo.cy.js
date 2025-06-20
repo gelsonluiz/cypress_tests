@@ -8,7 +8,7 @@ Cypress.Commands.add('cadastrarInfracao_NI_Anexo', () => {
   cy.get('input[ng-model="data.entidade.tipificacaoInfracao"]').click();
   cy.wait(1000)
   cy.get('select[ng-model="data.entidade.condutorIdentificado"]').select('Não');
-  cy.get('select[ng-model="data.entidade.indicativoAssinatura"]').select('Não');
+  cy.get('select[ng-model="data.entidade.indicativoAssinatura"]').should('be.disabled');
   cy.get('textarea[ng-model="data.entidade.observacao"]').type('Veículo = MS (Proprietário PF) - Condutor não identificado');
 });
 

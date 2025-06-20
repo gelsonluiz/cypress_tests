@@ -35,11 +35,14 @@ describe('Testes de cadastro de Agente de trânsito', () => {
     context('Pesquisa agente de trânsito', () => {
       cy.acessarAgenteDeTransito();
       cy.get('input[ng-model="filtros.data.cpf"]').type('89419120163', { delay: 100 });
+      cy.get('select[ng-model="filtros.data.tipoAgente"]').select('Detran');
       cy.get('select[ng-model="filtros.data.ativo"]').select('Ativo');
       // Etapa 5: Abrir filtro
       cy.contains('button', 'Pesquisar').should('be.visible').click();
-      cy.wait(1500);
+      cy.wait(1000);
     });
+
+    // Não há dados com essas opções de filtro.
 
     context('Cancela agente de trânsito localizado)', () => {
       cy.contains('td', 'WANIA OLIVEIRA TAVEIRA DIOGO') // localiza a célula com o nome
@@ -120,30 +123,35 @@ describe('Testes de cadastro de Agente de trânsito', () => {
         cy.screenshot('Gravação_com_sucesso');
       })
     } else {
-      cy.acessarAgenteDeTransito();
-      cy.get('a.btn.btn-info')
-        .contains('Voltar')
-        .should('not.be.disabled')
-        .should('be.visible')
-        .click();
+      context('Cadastrar novo agente de trânsito', () => {
+        cy.get('a.btn.btn-info')
+          .contains('Voltar')
+          .should('not.be.disabled')
+          .should('be.visible')
+          .click();
 
-      cy.get('input[ng-model="filtros.data.cpf"]').type('89419120163', { delay: 100 });
-      cy.get('input[ng-model="filtros.data.dataValidade"]').type('15/09/2050');
-      cy.get('select[ng-model="filtros.data.ativo"]').select('Desativado');
+        cy.contains('button', 'Limpar').should('be.visible').click({ force: true }); 
+        cy.wait(500);
+        
+        cy.get('input[ng-model="filtros.data.cpf"]').type('89419120163', { delay: 100 });
+        //cy.get('input[ng-model="filtros.data.dataValidade"]').type('15/09/2050');
+        //cy.get('select[ng-model="filtros.data.tipoAgente"]').select('Detran');
+        cy.get('select[ng-model="filtros.data.ativo"]').select('Desativado'); 
 
-      cy.contains('button', 'Pesquisar').should('be.visible').click();
-      cy.wait(500);
-      
-      cy.contains('td', 'WANIA OLIVEIRA TAVEIRA DIOGO') // localiza a célula com o nome
-        .parent('tr') // sobe para a linha da tabela
-        .within(() => {
-          cy.get('button[title="Reativar Registro"]').click();
-        });
-      cy.wait(1000);
-      cy.contains('button', 'Sim').click();
-      cy.get('[ng-switch="message.enableHtml"] > .ng-binding').should('contain', 'Desativação realizada com sucesso.');
-      cy.wait(500);
-
+        cy.contains('button', 'Pesquisar').should('be.visible').click();
+        cy.wait(500);
+        
+        cy.contains('td', 'Desativado');
+        cy.contains('td', 'WANIA OLIVEIRA TAVEIRA DIOGO') // localiza a célula com o nome
+          .parent('tr') // sobe para a linha da tabela
+          .within(() => {
+            cy.get('button[title="Reativar Registro"]').click();
+          });
+        cy.wait(1000);
+        cy.contains('button', 'Sim').click();
+        cy.get('[ng-switch="message.enableHtml"] > .ng-binding').should('contain', 'Reativação realizada com sucesso.');
+        cy.wait(500);
+      });
     }
   });
 });

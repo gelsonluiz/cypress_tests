@@ -30,10 +30,8 @@ export function dataHoje() {
 export function dataOntem() {
   const ontem = new Date();
   ontem.setDate(ontem.getDate() - 1);
-
   const dia = String(ontem.getDate()).padStart(2, '0');
   const mes = String(ontem.getMonth() + 1).padStart(2, '0');
   const ano = ontem.getFullYear();
-
   return `${dia}/${mes}/${ano}`;
 }

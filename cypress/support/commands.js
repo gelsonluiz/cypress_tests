@@ -1,4 +1,5 @@
 import 'cypress-file-upload';
+import { dataOntem } from '../support/utils';
 const agenteAutuador = Cypress.env('agente');
 
 Cypress.Commands.add('login', (usuario, senha) => {
@@ -110,21 +111,26 @@ Cypress.Commands.add('InformarDadosInfracao', (autoInfracao, placa, cpfCnpj) => 
     });
 
     cy.get('input[ng-model="data.entidade.numeroAutoInfracao"]').type(autoInfracao);
-    cy.get('select[ng-model="data.entidade.tipoAutoInfracao"]').select('Manual');
+    cy.get('select[ng-model="data.entidade.tipoAutoInfracao"]').should('be.disabled');
     cy.get('input[ng-model="data.entidade.localInfracao"]').type('Avenida Brasil');
-    cy.get('input[ng-model="data.entidade.dataInfracao"]').type('20/05/2025');
-    cy.get('input[ng-model="data.entidade.horaInfracao"]').type('14:30');    
+    cy.get('input[ng-model="data.entidade.dataInfracao"]').type(dataOntem());
+    cy.get('input[ng-model="data.entidade.horaInfracao"]').type('06:30');    
     cy.get('input[ng-model="data.entidade.codigoMunicipioInfracao"]').type('9051');
     cy.get('input[ng-model="dataModal.municipioDescricao"]').click();
   });
 });
 
 Cypress.Commands.add('incluirAgenteAutuador', () => {
-  cy.get('input[ng-model="data.entidade.matriculaAgenteAutuador"]').type(agenteAutuador);
-  cy.get('input[ng-model="data.entidade.nomeAgenteAutuador"]').click();
-  cy.wait(500);
+  cy.get('input[ng-model="data.entidade.matriculaAgenteAutuador"]').type('651611312');
+  cy.get('textarea[ng-model="data.entidade.observacao"]').click();
+
+  // funcionava antes da atualzação do sistema
+  //cy.get('input[ng-model="data.entidade.nomeAgenteAutuador"]').click();
+  //cy.wait(500);
+  //cy.get('select[ng-model="data.processoInfracaoTipoAutuador"]').select('112100 - DETRAN - MS', { force: true });
+
   cy.get('select[ng-model="data.processoInfracaoTipoAutuador"]').select('112100 - DETRAN - MS');
-  cy.wait(500);
+  // cy.wait(500);
 });
 
 Cypress.Commands.add('gravarAuto', () => {
