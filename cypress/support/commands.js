@@ -1,6 +1,8 @@
 import 'cypress-file-upload';
 import { dataOntem } from '../support/utils';
+
 const agenteAutuador = Cypress.env('agente');
+const ontem = dataOntem();
 
 Cypress.Commands.add('login', (usuario, senha) => {
     cy.visit('/detran/public/login/index.html');
@@ -113,7 +115,7 @@ Cypress.Commands.add('InformarDadosInfracao', (autoInfracao, placa, cpfCnpj) => 
     cy.get('input[ng-model="data.entidade.numeroAutoInfracao"]').type(autoInfracao);
     cy.get('select[ng-model="data.entidade.tipoAutoInfracao"]').should('be.disabled');
     cy.get('input[ng-model="data.entidade.localInfracao"]').type('Avenida Brasil');
-    cy.get('input[ng-model="data.entidade.dataInfracao"]').type(dataOntem());
+    cy.get('input[ng-model="data.entidade.dataInfracao"]').type(ontem);;
     cy.get('input[ng-model="data.entidade.horaInfracao"]').type('06:30');    
     cy.get('input[ng-model="data.entidade.codigoMunicipioInfracao"]').type('9051');
     cy.get('input[ng-model="dataModal.municipioDescricao"]').click();

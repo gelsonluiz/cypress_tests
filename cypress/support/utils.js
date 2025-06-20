@@ -9,12 +9,10 @@ export function gerarAutoInfracao() {
 export function gerarPlaca() {
   const letras = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
   const digitos = '0123456789';
-  
   const aleatorio = (conjunto, tamanho) =>
     Array.from({ length: tamanho }, () =>
       conjunto.charAt(Math.floor(Math.random() * conjunto.length))
     ).join('');
-
   return `${aleatorio(letras, 3)}${aleatorio(digitos, 1)}${aleatorio(letras, 1)}${aleatorio(digitos, 2)}`;
 }
 

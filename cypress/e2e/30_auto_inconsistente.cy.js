@@ -18,7 +18,7 @@ Cypress.Commands.add('cadastrarInfracaoManual', () => {
 Cypress.Commands.add('cadastrarInfracaoAutomatico', () => {
   context('Preencher campos do cadastro de autos inconsistentes manualmente', () => {
     cy.get('input[ng-model="data.entidade.veiculoPlaca"]').type('ADE0091');
-    cy.contains('span', 'Buscar na Base Nacional').click();
+    cy.contains('a', 'Buscar na Base Nacional').click();
     cy.wait(3000);
   });
 });
