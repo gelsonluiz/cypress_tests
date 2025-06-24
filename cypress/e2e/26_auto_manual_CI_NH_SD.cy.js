@@ -7,8 +7,10 @@ Cypress.Commands.add('cadastrarInfracao_CI_NH_SD', () => {
   cy.wait(1000)
   cy.get('input[ng-model="data.entidade.tipificacaoInfracao"]').click();
   cy.wait(1000)
-  cy.get('select[ng-model="data.entidade.condutorIdentificado"]').select('Sim'); // ou 'NAO' conforme opções visíveis
+  cy.get('select[ng-model="data.entidade.condutorIdentificado"]').select('Sim'); 
+  cy.wait(1000)
   cy.get('select[ng-model="data.entidade.tipoCondutor"]').select('Não Habilitado');
+  cy.wait(1000)
   cy.get('select[ng-model="data.entidade.tipoDocumento"]').select('Não Apresentado');
   cy.get('input[ng-model="data.entidade.nomeCondutor"]').type('Joao da Silva');
   cy.get('select[ng-model="data.entidade.indicativoAssinatura"]').select('Não');
