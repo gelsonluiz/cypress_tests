@@ -104,12 +104,12 @@ describe('Testes de cadastro de Agente de trânsito', () => {
     if (tipoTeste === 'completo') {
       context('Cadastrar novo agente de trânsito', () => {
         cy.get('a[ng-click="new()"]').click();
-        cy.get('input[ng-model="dataModal.consultaPessoaCpfCnpj"]').type('89419120163{enter}', { delay: 100 });
+        cy.get('input[ng-model="dataModal.consultaPessoaCpfCnpj"]').type('66367646191{enter}', { delay: 100 });
         cy.get('input[ng-model="dataModal.orgaoAutuador"]').type('DETRAN{enter}', { delay: 100 });
         cy.get('input[ng-model="data.entidade.email"]').type('noemail@inovvati.com.br');
         cy.get('input[ng-model="data.entidade.matricula"]').type('123456');
-        cy.get('input[ng-model="data.entidade.dataInicio"]').type('05/06/2026');
-        cy.get('input[ng-model="data.entidade.dataValidadeCurso"]').type('30/06/2025');
+        cy.get('input[ng-model="data.entidade.dataInicio"]').type('05/06/2025');
+        cy.get('input[ng-model="data.entidade.dataValidadeCurso"]').type('30/06/2026');
         cy.get('select[ng-model="data.entidade.tipoAgente"]').select('Detran');
         cy.get('input[ng-model="data.entidade.publicacaoDoe"]').type('111222333');
         cy.get('a.btn.btn-success')
@@ -135,7 +135,7 @@ describe('Testes de cadastro de Agente de trânsito', () => {
         
         cy.get('input[ng-model="filtros.data.cpf"]').type('89419120163', { delay: 100 });
         //cy.get('input[ng-model="filtros.data.dataValidade"]').type('15/09/2050');
-        //cy.get('select[ng-model="filtros.data.tipoAgente"]').select('Detran');
+        cy.get('select[ng-model="filtros.data.tipoAgente"]').select('Detran');
         cy.get('select[ng-model="filtros.data.ativo"]').select('Desativado'); 
 
         cy.contains('button', 'Pesquisar').should('be.visible').click();

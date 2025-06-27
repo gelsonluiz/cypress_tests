@@ -9,7 +9,7 @@ Cypress.Commands.add('cadastrarInfracao_NI_Anexo', () => {
   cy.wait(1000)
   cy.get('select[ng-model="data.entidade.condutorIdentificado"]').select('Não');
   cy.get('select[ng-model="data.entidade.indicativoAssinatura"]').should('be.disabled');
-  cy.get('textarea[ng-model="data.entidade.observacao"]').type('Veículo = MS (Proprietário PF) - Condutor não identificado');
+  cy.get('textarea[ng-model="data.entidade.observacao"]').type('Veículo = MS (Proprietário PJ) - Condutor não identificado');
 });
 
 describe('Cadastro de auto - Condutor não identificado com Anexo', () => {
@@ -22,7 +22,7 @@ describe('Cadastro de auto - Condutor não identificado com Anexo', () => {
     context('Veículo == MS / Proprietário PF', () => {
       const autoInfracao = gerarAutoInfracao();
       cy.get('@automoveis').then((dados) => {
-        const automovel = dados.automoveis[0];
+        const automovel = dados.automoveis[1];
         cy.acessarCadastroAtendimento();
         cy.InformarDadosInfracao(autoInfracao, automovel.placa, automovel.cpfCnpj)
         cy.cadastrarInfracao_NI_Anexo();
@@ -40,7 +40,7 @@ describe('Cadastro de auto - Condutor não identificado com Anexo', () => {
       context('Veículo == MS / Proprietário PJ', () => {
         const autoInfracao = gerarAutoInfracao();
         cy.get('@automoveis').then((dados) => {
-          const automovel = dados.automoveis[1];
+          const automovel = dados.automoveis[0];
           cy.get('#btnBack').should('be.visible').and('contain', 'Voltar').click();
           cy.wait(500);
           cy.contains('button', 'Novo').should('be.visible').click({ force: true });

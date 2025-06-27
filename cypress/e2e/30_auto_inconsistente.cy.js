@@ -3,7 +3,7 @@ const agenteAutuador = Cypress.env('agente');
 
 Cypress.Commands.add('cadastrarInfracaoManual', () => {
   context('Preencher campos do cadastro de autos inconsistentes manualmente', () => {
-    cy.get('input[ng-model="data.entidade.veiculoPlaca"]').type('REP5665');
+    cy.get('input[ng-model="data.entidade.veiculoPlaca"]').type('ADE0091');
     cy.get('input[ng-model="data.entidade.veiculoRenavam"]').type('600038823');
 
     cy.get('input[ng-model="data.descricaoMarca"]').type('DODGE DART COUPE{enter}');
