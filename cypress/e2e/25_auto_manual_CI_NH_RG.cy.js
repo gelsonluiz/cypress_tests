@@ -7,6 +7,16 @@ Cypress.Commands.add('cadastrarInfracao_CI_NH_RG', () => {
   cy.wait(1000)
   cy.get('input[ng-model="data.entidade.tipificacaoInfracao"]').click();
   cy.wait(1000)
+
+  // Verifica se retornou a multa correta
+  cy.get('input[ng-model="data.entidade.tipificacaoInfracao"]')
+  .should('not.have.value', '') // garante que não está vazio
+  .then(($input) => {
+    const valor = $input.val();
+    cy.log('Multa:', valor);
+    expect(valor).to.equal('Dirigir veículo segurando telefone celular'); 
+  });
+
   cy.get('select[ng-model="data.entidade.condutorIdentificado"]').select('Sim'); // ou 'NAO' conforme opções visíveis
   cy.get('select[ng-model="data.entidade.tipoCondutor"]').select('Não Habilitado');
   cy.get('select[ng-model="data.entidade.tipoDocumento"]').select('Carteira Identidade');

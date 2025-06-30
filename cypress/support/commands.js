@@ -119,20 +119,34 @@ Cypress.Commands.add('InformarDadosInfracao', (autoInfracao, placa, cpfCnpj) => 
     cy.get('input[ng-model="data.entidade.horaInfracao"]').type('06:30');    
     cy.get('input[ng-model="data.entidade.codigoMunicipioInfracao"]').type('9051');
     cy.get('input[ng-model="dataModal.municipioDescricao"]').click();
+    cy.wait(1500); 
+
+    // Verifica se retornou o município correto
+    cy.get('input[ng-model="dataModal.municipioDescricao"]')
+    .should('not.have.value', '') // garante que não está vazio
+    .then(($input) => {
+      const valor = $input.val();
+      cy.log('Município:', valor);
+      expect(valor).to.equal('CAMPO GRANDE'); // opcional: verifica se é CAMPO GRANDE
+    });
   });
 });
 
 Cypress.Commands.add('incluirAgenteAutuador', () => {
   cy.get('input[ng-model="data.entidade.matriculaAgenteAutuador"]').type('651611312');
   cy.get('textarea[ng-model="data.entidade.observacao"]').click();
+  cy.wait(500); 
 
-  // funcionava antes da atualzação do sistema
-  //cy.get('input[ng-model="data.entidade.nomeAgenteAutuador"]').click();
-  //cy.wait(500);
-  //cy.get('select[ng-model="data.processoInfracaoTipoAutuador"]').select('112100 - DETRAN - MS', { force: true });
+  // Verifica se retornou o nome do agente
+  cy.get('input[ng-model="data.entidade.nomeAgenteAutuador"]')
+  .should('not.have.value', '') // garante que não está vazio
+  .then(($input) => {
+    const valor = $input.val();
+    cy.log('Agente:', valor);
+    expect(valor).to.equal('JOAO GUILHERME A DE ANDRADE                                 '); 
+  });
 
   cy.get('select[ng-model="data.processoInfracaoTipoAutuador"]').select('112100 - DETRAN - MS');
-  // cy.wait(500);
 });
 
 Cypress.Commands.add('gravarAuto', () => {
@@ -173,5 +187,3 @@ Cypress.Commands.add('informarInfracao', (codigoInfracao) => {
     cy.wait(500);
   }
 });
-
-

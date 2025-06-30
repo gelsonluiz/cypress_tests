@@ -6,6 +6,16 @@ Cypress.Commands.add('cadastrarInfracao_CI_ET_Dlg', () => {
   cy.wait(1000)
   cy.get('input[ng-model="data.entidade.tipificacaoInfracao"]').click();
   cy.wait(1000)
+
+  // Verifica se retornou a multa correta
+  cy.get('input[ng-model="data.entidade.tipificacaoInfracao"]')
+  .should('not.have.value', '') // garante que não está vazio
+  .then(($input) => {
+    const valor = $input.val();
+    cy.log('Multa:', valor);
+    expect(valor).to.equal('Dirigir sob a influência de álcool'); 
+  });
+
   cy.contains('h3', 'Unidade de medida da infração').should('be.visible')
   cy.contains('td', 'Dg/l').click();
   cy.wait(500)
