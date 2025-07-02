@@ -74,7 +74,7 @@ describe('Testes de cadastro de Agente de trânsito', () => {
         .should('be.visible')
         .click();
       // espera o loader aparecer e depois sumir
-      cy.get('[ng-switch="message.enableHtml"] > .ng-binding').should('contain', 'Data de Início do Curso deve ser inferior a Data Atual');
+      cy.get('[ng-switch="message.enableHtml"] > .ng-binding').should('contain', 'Data Validade Curso deve ser maior que a Data Atual.');
       cy.wait(500);
       //cy.screenshot('Mensagem_data_inicio_maior_que_final');
     });
@@ -134,7 +134,7 @@ describe('Testes de cadastro de Agente de trânsito', () => {
         cy.wait(500);
         
         cy.get('input[ng-model="filtros.data.cpf"]').type('89419120163', { delay: 100 });
-        //cy.get('input[ng-model="filtros.data.dataValidade"]').type('15/09/2050');
+        cy.get('input[ng-model="filtros.data.dataValidadeCurso"]').type('15/09/2050');
         cy.get('select[ng-model="filtros.data.tipoAgente"]').select('Detran');
         cy.get('select[ng-model="filtros.data.ativo"]').select('Desativado'); 
 
