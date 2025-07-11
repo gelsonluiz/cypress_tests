@@ -1,5 +1,7 @@
-import { gerarAutoInfracao, gerarPlaca, dataHoje } from '../support/utils';
+import { gerarAutoInfracao } from '../support/utils';
+import { dataOntem } from '../support/utils';
 const agenteAutuador = Cypress.env('agente');
+const ontem = dataOntem();
 
 Cypress.Commands.add('cadastrarInfracaoManual', () => {
   context('Preencher campos do cadastro de autos inconsistentes manualmente', () => {
@@ -82,7 +84,7 @@ Cypress.Commands.add('cadastrarInfracaoAutomatico', () => {
 Cypress.Commands.add('cadastrarDadosInfracao', (autoInfracao, codigoInfracao) => {
   context('Preencher campos do cadastro de infracao', () => {
     cy.get('input[ng-model="data.entidade.numeroAutoInfracao"]').type(autoInfracao);
-    cy.get('input[ng-model="data.entidade.dataInfracao"]').type('20/05/2025');
+    cy.get('input[ng-model="data.entidade.dataInfracao"]').type(ontem);
     cy.get('input[ng-model="data.entidade.horaInfracao"]').type('10:30');
     cy.get('input[ng-model="data.entidade.codigoMunicipioInfracao"]').type('9051');
 
