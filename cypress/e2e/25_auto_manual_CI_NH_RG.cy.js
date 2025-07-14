@@ -1,6 +1,6 @@
 import { gerarAutoInfracao, gerarPlaca, dataHoje } from '../support/utils';
 
-const tipoTeste = Cypress.env('tipoTeste') || 'parcial';
+const tipoTeste = Cypress.env('tipoTeste') || 'completo';
 
 Cypress.Commands.add('cadastrarInfracao_CI_NH_RG', () => {
   cy.get('input[ng-model="data.entidade.codigoInfracao"]').type('76331');

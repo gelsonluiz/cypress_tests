@@ -1,11 +1,18 @@
 import 'cypress-file-upload';
 import { dataOntem } from '../support/utils';
 
-const agenteAutuador = Cypress.env('agente');
 const ontem = dataOntem();
+const ambiente = Cypress.env('ambiente') || 'dev';
 
 Cypress.Commands.add('login', (usuario, senha) => {
-    cy.visit('/detran/public/login/index.html');
+  let urlBase; 
+    if (ambiente === 'dev') {
+      urlBase = Cypress.env('urlDev') || 'dev';
+    } else {
+      urlBase = Cypress.env('urlHom') || 'hom';
+    }
+
+    cy.visit(urlBase+'/public/login/index.html')
     cy.get('#usuario').type(usuario);
     cy.get('#password').type(senha, { sensitive: true });
     cy.get('#btnAcessar').click();
@@ -56,13 +63,6 @@ Cypress.Commands.add('acessarCadastroAtendimento', () => {
     .scrollIntoView()
     .should('be.visible')
     .click();
-
-    // Acessa a tela de Auto de Infração Manual
-    // cy.contains('a', 'AUTO DE INFRAÇÃO MANUAL', { timeout: 10000 })
-    // .scrollIntoView()
-    //  .should('be.visible')
-    //  .click();
-    //cy.url().should('include', '/autoinfracaomanual'); 
 
     // Acessa a tela de Auto de Infração Manual pelo atendimento
     cy.get('a[href="#/atd/inf/atendimento"]').eq(0).should('have.text', 'ATENDIMENTO').click();
@@ -133,7 +133,17 @@ Cypress.Commands.add('InformarDadosInfracao', (autoInfracao, placa, cpfCnpj) => 
 });
 
 Cypress.Commands.add('incluirAgenteAutuador', () => {
-  cy.get('input[ng-model="data.entidade.matriculaAgenteAutuador"]').type('651611312');
+  let agente, nomeAgente; 
+  if (ambiente === 'dev') {
+    agente = Cypress.env('agenteDev');
+    nomeAgente = Cypress.env('nomeAgenteDev');
+  } else {
+    agente = Cypress.env('agenteHom');
+    nomeAgente = Cypress.env('nomeAgenteHom');
+  } 
+
+  cy.log('Incluir Agente Autuador:', agente, nomeAgente);
+  cy.get('input[ng-model="data.entidade.matriculaAgenteAutuador"]').type(agente);
   cy.get('textarea[ng-model="data.entidade.observacao"]').click();
   cy.wait(500); 
 
@@ -143,7 +153,7 @@ Cypress.Commands.add('incluirAgenteAutuador', () => {
   .then(($input) => {
     const valor = $input.val();
     cy.log('Agente:', valor);
-    expect(valor).to.equal('JOAO GUILHERME A DE ANDRADE                                 '); 
+    expect(valor).to.equal(nomeAgente); // opcional: verifica se é o nome correto
   });
 
   cy.get('select[ng-model="data.processoInfracaoTipoAutuador"]').select('112100 - DETRAN - MS');

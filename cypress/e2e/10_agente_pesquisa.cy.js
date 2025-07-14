@@ -1,9 +1,10 @@
-const tipoTeste = Cypress.env('tipoTeste') || 'parcial';
-
+const tipoTeste = Cypress.env('tipoTeste') || 'completo';
+const ambiente = Cypress.env('ambiente') || 'dev';
 
 Cypress.Commands.add('acessarAgenteDeTransito', () => {
   context('Acessar a tela de agente de trânsito', () => {
     cy.log(tipoTeste);
+    cy.log(ambiente);
     cy.url().should('include', '/site/index');
     cy.wait(1000);
 
@@ -32,29 +33,32 @@ describe('Testes de cadastro de Agente de trânsito', () => {
   })
 
   it('Testes de cadastro de Agente de trânsito', () => {
-    context('Pesquisa agente de trânsito', () => {
-      cy.acessarAgenteDeTransito();
-      cy.get('input[ng-model="filtros.data.cpf"]').type('89419120163', { delay: 100 });
-      cy.get('select[ng-model="filtros.data.tipoAgente"]').select('Detran');
-      cy.get('select[ng-model="filtros.data.ativo"]').select('Ativo');
-      // Etapa 5: Abrir filtro
-      cy.contains('button', 'Pesquisar').should('be.visible').click();
-      cy.wait(1000);
-    });
+    if (ambiente === 'dev') {
+    
+      context('Pesquisa agente de trânsito', () => {
+        cy.acessarAgenteDeTransito();
+        cy.get('input[ng-model="filtros.data.cpf"]').type('89419120163', { delay: 100 });
+        cy.get('select[ng-model="filtros.data.tipoAgente"]').select('Detran');
+        cy.get('select[ng-model="filtros.data.ativo"]').select('Ativo');
+        // Etapa 5: Abrir filtro
+        cy.contains('button', 'Pesquisar').should('be.visible').click();
+        cy.wait(1000);
+      });
 
-    // Não há dados com essas opções de filtro.
-
-    context('Cancela agente de trânsito localizado)', () => {
-      cy.contains('td', 'WANIA OLIVEIRA TAVEIRA DIOGO') // localiza a célula com o nome
-        .parent('tr') // sobe para a linha da tabela
-        .within(() => {
-          cy.get('button[title="Desativar Registro"]').click();
-        });
-      cy.wait(1000);
-      cy.contains('button', 'Sim').click();
-      cy.get('[ng-switch="message.enableHtml"] > .ng-binding').should('contain', 'Desativação realizada com sucesso.');
-      cy.wait(500);
-    });
+      context('Cancela agente de trânsito localizado)', () => {
+        cy.contains('td', 'WANIA OLIVEIRA TAVEIRA DIOGO') // localiza a célula com o nome
+          .parent('tr') // sobe para a linha da tabela
+          .within(() => {
+            cy.get('button[title="Desativar Registro"]').click();
+          });66367646
+        cy.wait(1000);
+        cy.contains('button', 'Sim').click();
+        cy.get('[ng-switch="message.enableHtml"] > .ng-binding').should('contain', 'Desativação realizada com sucesso.');
+        cy.wait(500);
+      });
+    } else {
+        cy.acessarAgenteDeTransito();
+    }
 
     context('Tenta cadastrar novo agente de trânsito com data errada', () => {
       // Acessa a tela de cadastro de agente de trânsito
@@ -101,7 +105,7 @@ describe('Testes de cadastro de Agente de trânsito', () => {
     });
 
 
-    if (tipoTeste === 'completo') {
+    if (ambiente === 'hom') {
       context('Cadastrar novo agente de trânsito', () => {
         cy.get('a[ng-click="new()"]').click();
         cy.get('input[ng-model="dataModal.consultaPessoaCpfCnpj"]').type('66367646191{enter}', { delay: 100 });

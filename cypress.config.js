@@ -3,7 +3,7 @@ const allureWriter = require('@shelex/cypress-allure-plugin/writer');
 
 module.exports = defineConfig({
   e2e: {
-    baseUrl: "https://dev.detran.ms.gov.br/detran/", 
+    //baseUrl: 'https://hom.detran.ms.gov.br/detran/', 
     reporter: "cypress-multi-reporters",
     reporterOptions: {
       reporterEnabled: "cypress-mochawesome-reporter, mocha-junit-reporter",
