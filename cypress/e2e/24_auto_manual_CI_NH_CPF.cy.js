@@ -2,7 +2,7 @@ import { gerarAutoInfracao, gerarPlaca, dataHoje } from '../support/utils';
 
 const tipoTeste = Cypress.env('tipoTeste') || 'parcial';
 
-Cypress.Commands.add('cadastrarInfracao_CI_NH_CPF', () => {
+Cypress.Commands.add('cadastrarInfracao_CI_NH_CPF', (observacao) => {
   cy.get('input[ng-model="data.entidade.codigoInfracao"]').type('76331');
   cy.wait(1000)
   cy.get('input[ng-model="data.entidade.tipificacaoInfracao"]').click();
@@ -27,7 +27,7 @@ Cypress.Commands.add('cadastrarInfracao_CI_NH_CPF', () => {
   cy.get('input[ng-model="data.entidade.nomeCondutor"]').type('Joao da Silva');
 
   cy.get('select[ng-model="data.entidade.indicativoAssinatura"]').select('Não');
-  cy.get('textarea[ng-model="data.entidade.observacao"]').type('Condutor identificado - Não Habilitado com documento CPF');
+  cy.get('textarea[ng-model="data.entidade.observacao"]').type(observacao + '\n- Não Habilitado com documento CPF');
 });
 
 describe('Cadastro de auto - Condutor identificado - Não Habilitado - CPF', () => {
@@ -44,7 +44,7 @@ describe('Cadastro de auto - Condutor identificado - Não Habilitado - CPF', () 
         const automovel = dados.automoveis[0];
         cy.acessarCadastroAtendimento();
         cy.InformarDadosInfracao(autoInfracao, automovel.placa, automovel.cpfCnpj) // CPF fake
-        cy.cadastrarInfracao_CI_NH_CPF();
+        cy.cadastrarInfracao_CI_NH_CPF(automovel.observacao);
         cy.incluirAgenteAutuador();
         cy.GravarAutoInfracao();
       });
@@ -59,7 +59,7 @@ describe('Cadastro de auto - Condutor identificado - Não Habilitado - CPF', () 
           cy.contains('button', 'Novo').should('be.visible').click({ force: true });
           cy.wait(1500);
           cy.InformarDadosInfracao(autoInfracao, automovel.placa, automovel.cpfCnpj)
-          cy.cadastrarInfracao_CI_NH_CPF();
+          cy.cadastrarInfracao_CI_NH_CPF(automovel.observacao);
           cy.incluirAgenteAutuador();
           cy.GravarAutoInfracao();
         });
@@ -73,7 +73,7 @@ describe('Cadastro de auto - Condutor identificado - Não Habilitado - CPF', () 
           cy.contains('button', 'Novo').should('be.visible').click({ force: true });
           cy.wait(1500);
           cy.InformarDadosInfracao(autoInfracao, automovel.placa, automovel.cpfCnpj)
-          cy.cadastrarInfracao_CI_NH_CPF();
+          cy.cadastrarInfracao_CI_NH_CPF(automovel.observacao);
           cy.incluirAgenteAutuador();
           cy.GravarAutoInfracao();
         });
@@ -87,7 +87,7 @@ describe('Cadastro de auto - Condutor identificado - Não Habilitado - CPF', () 
           cy.contains('button', 'Novo').should('be.visible').click({ force: true });
           cy.wait(1500);
           cy.InformarDadosInfracao(autoInfracao, automovel.placa, automovel.cpfCnpj)
-          cy.cadastrarInfracao_CI_NH_CPF();
+          cy.cadastrarInfracao_CI_NH_CPF(automovel.observacao);
           cy.incluirAgenteAutuador();
           cy.GravarAutoInfracao();
         });

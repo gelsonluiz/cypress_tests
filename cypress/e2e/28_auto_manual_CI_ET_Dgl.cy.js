@@ -1,7 +1,7 @@
 import { gerarAutoInfracao, gerarPlaca, dataHoje } from '../support/utils';
 const tipoTeste = Cypress.env('tipoTeste') || 'completo';
 
-Cypress.Commands.add('cadastrarInfracao_CI_ET_Dlg', () => {
+Cypress.Commands.add('cadastrarInfracao_CI_ET_Dlg', (automovel) => {
   cy.get('input[ng-model="data.entidade.codigoInfracao"]').type('51691');
   cy.wait(1000)
   cy.get('input[ng-model="data.entidade.tipificacaoInfracao"]').click();
@@ -28,7 +28,7 @@ Cypress.Commands.add('cadastrarInfracao_CI_ET_Dlg', () => {
   cy.get('input[ng-model="data.entidade.numeroDocumentoInfrator"]').type('02346318485');
   cy.wait(500);
   cy.get('select[ng-model="data.entidade.indicativoAssinatura"]').select('Não');
-  cy.get('textarea[ng-model="data.entidade.observacao"]').type('Veículo MS (Proprietário PF) - Infrações que utilizam equipamentos eletrônicos - etilômetro.');
+  cy.get('textarea[ng-model="data.entidade.observacao"]').type(automovel + '\n- Infrações que utilizam equipamentos eletrônicos - etilômetro.');
 });
 
 describe('Cadastro de auto - Teste alcoolemia Exame de sangue dl', () => {
@@ -45,7 +45,7 @@ describe('Cadastro de auto - Teste alcoolemia Exame de sangue dl', () => {
         const automovel = dados.automoveis[0];
         cy.acessarCadastroAtendimento();
         cy.InformarDadosInfracao(autoInfracao, automovel.placa, automovel.cpfCnpj)
-        cy.cadastrarInfracao_CI_ET_Dlg();
+        cy.cadastrarInfracao_CI_ET_Dlg(automovel.observacao);
         cy.incluirAgenteAutuador();
         cy.GravarAutoInfracao();
       });
@@ -61,7 +61,7 @@ describe('Cadastro de auto - Teste alcoolemia Exame de sangue dl', () => {
           cy.contains('button', 'Novo').should('be.visible').click({ force: true });
           cy.wait(1500);
           cy.InformarDadosInfracao(autoInfracao, automovel.placa, automovel.cpfCnpj)
-          cy.cadastrarInfracao_CI_ET_Dlg();
+          cy.cadastrarInfracao_CI_ET_Dlg(automovel.observacao);
           cy.incluirAgenteAutuador();
           cy.GravarAutoInfracao();
         });
@@ -75,7 +75,7 @@ describe('Cadastro de auto - Teste alcoolemia Exame de sangue dl', () => {
           cy.contains('button', 'Novo').should('be.visible').click({ force: true });
           cy.wait(1500);
           cy.InformarDadosInfracao(autoInfracao, automovel.placa, automovel.cpfCnpj)
-          cy.cadastrarInfracao_CI_ET_Dlg();
+          cy.cadastrarInfracao_CI_ET_Dlg(automovel.observacao);
           cy.incluirAgenteAutuador();
           cy.GravarAutoInfracao();
         });
@@ -89,7 +89,7 @@ describe('Cadastro de auto - Teste alcoolemia Exame de sangue dl', () => {
           cy.contains('button', 'Novo').should('be.visible').click({ force: true });
           cy.wait(1500);
           cy.InformarDadosInfracao(autoInfracao, automovel.placa, automovel.cpfCnpj)
-          cy.cadastrarInfracao_CI_ET_Dlg();
+          cy.cadastrarInfracao_CI_ET_Dlg(automovel.observacao);
           cy.incluirAgenteAutuador();
           cy.GravarAutoInfracao();
         });

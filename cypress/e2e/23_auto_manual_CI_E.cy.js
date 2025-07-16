@@ -3,7 +3,7 @@ import { gerarAutoInfracao, gerarPlaca, dataHoje } from '../support/utils';
 const tipoTeste = Cypress.env('tipoTeste') || 'parcial';
 
 Cypress.Commands.add('cadastrarInfracao_CI_E', () => {
-  context('Informa Tipo do Condutor', () => {
+  context('Informa Tipo do Condutor', (observacao) => {
     cy.get('input[ng-model="data.entidade.codigoInfracao"]').type('76331');
     cy.wait(1000)
     cy.get('input[ng-model="data.entidade.tipificacaoInfracao"]').click();
@@ -27,7 +27,7 @@ Cypress.Commands.add('cadastrarInfracao_CI_E', () => {
       .type('Argentin{enter}');
     cy.wait(500);
     cy.get('select[ng-model="data.entidade.indicativoAssinatura"]').select('Não');
-    cy.get('textarea[ng-model="data.entidade.observacao"]').type('Veículo = MS (Proprietário PF) - Condutor Estrangeiro');
+    cy.get('textarea[ng-model="data.entidade.observacao"]').type(observacao + '\n- Condutor Estrangeiro');
   });
 });
 
@@ -45,7 +45,7 @@ describe('Condutor Identificado Estrangeiro', () => {
         const automovel = dados.automoveis[0];
         cy.acessarCadastroAtendimento();
         cy.InformarDadosInfracao(autoInfracao, automovel.placa, automovel.cpfCnpj)
-        cy.cadastrarInfracao_CI_E();
+        cy.cadastrarInfracao_CI_E(automovel.observacao);
         cy.incluirAgenteAutuador();
         cy.GravarAutoInfracao();
       });
@@ -60,7 +60,7 @@ describe('Condutor Identificado Estrangeiro', () => {
           cy.contains('button', 'Novo').should('be.visible').click({ force: true });
           cy.wait(1500);
           cy.InformarDadosInfracao(autoInfracao, automovel.placa, automovel.cpfCnpj)
-          cy.cadastrarInfracao_CI_E();
+          cy.cadastrarInfracao_CI_E(automovel.observacao);
           cy.incluirAgenteAutuador();
           cy.GravarAutoInfracao();
         });
@@ -74,7 +74,7 @@ describe('Condutor Identificado Estrangeiro', () => {
           cy.contains('button', 'Novo').should('be.visible').click({ force: true });
           cy.wait(1500);
           cy.InformarDadosInfracao(autoInfracao, automovel.placa, automovel.cpfCnpj)
-          cy.cadastrarInfracao_CI_E();
+          cy.cadastrarInfracao_CI_E(automovel.observacao);
           cy.incluirAgenteAutuador();
           cy.GravarAutoInfracao();
         });
@@ -88,7 +88,7 @@ describe('Condutor Identificado Estrangeiro', () => {
           cy.contains('button', 'Novo').should('be.visible').click({ force: true });
           cy.wait(1500);
           cy.InformarDadosInfracao(autoInfracao, automovel.placa, automovel.cpfCnpj)
-          cy.cadastrarInfracao_CI_E();
+          cy.cadastrarInfracao_CI_E(automovel.observacao);
           cy.incluirAgenteAutuador();
           cy.GravarAutoInfracao();
         });

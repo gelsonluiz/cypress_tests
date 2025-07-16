@@ -2,7 +2,7 @@ import { gerarAutoInfracao, gerarPlaca, dataHoje } from '../support/utils';
 
 const tipoTeste = Cypress.env('tipoTeste') || 'parcial';
 
-Cypress.Commands.add('cadastrarInfracao_CI_NH_SD', () => {
+Cypress.Commands.add('cadastrarInfracao_CI_NH_SD', (observacao) => {
   cy.get('input[ng-model="data.entidade.codigoInfracao"]').type('76331');
   cy.wait(1000)
   cy.get('input[ng-model="data.entidade.tipificacaoInfracao"]').click();
@@ -24,7 +24,7 @@ Cypress.Commands.add('cadastrarInfracao_CI_NH_SD', () => {
   cy.get('select[ng-model="data.entidade.tipoDocumento"]').select('Não Apresentado');
   cy.get('input[ng-model="data.entidade.nomeCondutor"]').type('Joao da Silva');
   cy.get('select[ng-model="data.entidade.indicativoAssinatura"]').select('Não');
-  cy.get('textarea[ng-model="data.entidade.observacao"]').type('Condutor identificado - Não Habilitado sem documento');
+  cy.get('textarea[ng-model="data.entidade.observacao"]').type(observacao + '\nCondutor identificado - Não Habilitado sem documento');
 });
 
 describe('Cadastro de auto - Veículo = MS (Proprietário PF) - Condutor identificado - Não Habilitado - Sem Documento', () => {
@@ -41,7 +41,7 @@ describe('Cadastro de auto - Veículo = MS (Proprietário PF) - Condutor identif
         const automovel = dados.automoveis[0];
         cy.acessarCadastroAtendimento();
         cy.InformarDadosInfracao(autoInfracao, automovel.placa, automovel.cpfCnpj)
-        cy.cadastrarInfracao_CI_NH_SD();
+        cy.cadastrarInfracao_CI_NH_SD(automovel.observacao);
         cy.incluirAgenteAutuador();
         cy.GravarAutoInfracao();
       });
@@ -57,7 +57,7 @@ describe('Cadastro de auto - Veículo = MS (Proprietário PF) - Condutor identif
           cy.contains('button', 'Novo').should('be.visible').click({ force: true });
           cy.wait(1500);
           cy.InformarDadosInfracao(autoInfracao, automovel.placa, automovel.cpfCnpj)
-          cy.cadastrarInfracao_CI_NH_SD();
+          cy.cadastrarInfracao_CI_NH_SD(automovel.observacao);
           cy.incluirAgenteAutuador();
           cy.GravarAutoInfracao();
         });
@@ -71,7 +71,7 @@ describe('Cadastro de auto - Veículo = MS (Proprietário PF) - Condutor identif
           cy.contains('button', 'Novo').should('be.visible').click({ force: true });
           cy.wait(1500);
           cy.InformarDadosInfracao(autoInfracao, automovel.placa, automovel.cpfCnpj)
-          cy.cadastrarInfracao_CI_NH_SD();
+          cy.cadastrarInfracao_CI_NH_SD(automovel.observacao);
           cy.incluirAgenteAutuador();
           cy.GravarAutoInfracao();
         });
@@ -85,7 +85,7 @@ describe('Cadastro de auto - Veículo = MS (Proprietário PF) - Condutor identif
           cy.contains('button', 'Novo').should('be.visible').click({ force: true });
           cy.wait(1500);
           cy.InformarDadosInfracao(autoInfracao, automovel.placa, automovel.cpfCnpj)
-          cy.cadastrarInfracao_CI_NH_SD();
+          cy.cadastrarInfracao_CI_NH_SD(automovel.observacao);
           cy.incluirAgenteAutuador();
           cy.GravarAutoInfracao();
         });

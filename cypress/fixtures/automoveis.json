@@ -4,25 +4,25 @@
     "placa": "ADE0091",
     "uf": "MS",
     "cpfCnpj": "78972680125",
-    "observacao": "Veículo == MS / Proprietário PF"
+    "observacao": "Veículo == MS / Proprietário PF - SNE-NÃO"
   },
   {
     "placa": "REP5665",
     "uf": "MS",
     "cpfCnpj": "11111111111180",
-    "observacao": "Veículo == MS / Proprietário PJ"
+    "observacao": "Veículo == MS / Proprietário PJ - SNE-NÃO"
   },
   {
     "placa": "DET4033",
     "uf": "SP",
     "cpfCnpj": "00330851101",
-    "observacao": "Veículo <> MS / Proprietário PF"
+    "observacao": "Veículo <> MS / Proprietário PF - SNE-SIM"
   },
   {
     "placa": "JDP0004",
     "uf": "DF",
     "cpfCnpj": "57561615000104",
-    "observacao": "Veículo <> MS / Proprietário PJ"
+    "observacao": "Veículo <> MS / Proprietário PJ - SNE-NÃO"
   }
 ]}
  

@@ -2,7 +2,7 @@ import { gerarAutoInfracao } from '../support/utils';
 const tipoTeste = Cypress.env('tipoTeste') || 'completo';
 const ambiente = Cypress.env('ambiente') || 'dev';
 
-Cypress.Commands.add('cadastrarInfracao_NI', () => {
+Cypress.Commands.add('cadastrarInfracao_NI', (observacao) => {
     cy.get('input[ng-model="data.entidade.codigoInfracao"]').type('76331');
     cy.wait(1000)
     cy.get('input[ng-model="data.entidade.tipificacaoInfracao"]').click();
@@ -19,7 +19,7 @@ Cypress.Commands.add('cadastrarInfracao_NI', () => {
 
     cy.get('select[ng-model="data.entidade.condutorIdentificado"]').select('Não'); 
     cy.get('select[ng-model="data.entidade.indicativoAssinatura"]').should('be.disabled');
-    cy.get('textarea[ng-model="data.entidade.observacao"]').type('Veículo = MS (Proprietário PJ) - Condutor não identificado');
+    cy.get('textarea[ng-model="data.entidade.observacao"]').type(observacao + '\n- Condutor não identificado');
 });
 
 describe('Condutor não identificado', () => {
@@ -37,7 +37,7 @@ describe('Condutor não identificado', () => {
       const automovel = dados.automoveis[1]; 
       cy.acessarCadastroAtendimento()
       cy.InformarDadosInfracao(autoInfracao, automovel.placa, automovel.cpfCnpj)
-      cy.cadastrarInfracao_NI();
+      cy.cadastrarInfracao_NI(automovel.observacao);
       cy.incluirAgenteAutuador();
       cy.GravarAutoInfracao();
       })
@@ -54,7 +54,7 @@ describe('Condutor não identificado', () => {
         cy.contains('button', 'Novo').should('be.visible').click({ force: true });
         cy.wait(1500);
         cy.InformarDadosInfracao(autoInfracao, automovel.placa, automovel.cpfCnpj)
-        cy.cadastrarInfracao_NI();
+        cy.cadastrarInfracao_NI(automovel.observacao);
         cy.incluirAgenteAutuador();
         cy.GravarAutoInfracao();
         })
@@ -69,7 +69,7 @@ describe('Condutor não identificado', () => {
         cy.contains('button', 'Novo').should('be.visible').click({ force: true });
         cy.wait(1500);
         cy.InformarDadosInfracao(autoInfracao, automovel.placa, automovel.cpfCnpj)
-        cy.cadastrarInfracao_NI();
+        cy.cadastrarInfracao_NI(automovel.observacao);
         cy.incluirAgenteAutuador();
         cy.GravarAutoInfracao();
         })
@@ -84,7 +84,7 @@ describe('Condutor não identificado', () => {
         cy.contains('button', 'Novo').should('be.visible').click({ force: true });
         cy.wait(1500);
         cy.InformarDadosInfracao(autoInfracao, automovel.placa, automovel.cpfCnpj)
-        cy.cadastrarInfracao_NI();
+        cy.cadastrarInfracao_NI(automovel.observacao);
         cy.incluirAgenteAutuador();
         cy.GravarAutoInfracao();
         })

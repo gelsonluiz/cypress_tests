@@ -2,7 +2,7 @@ import { gerarAutoInfracao, gerarPlaca, dataHoje } from '../support/utils';
 
 const tipoTeste = Cypress.env('tipoTeste') || 'parcial';
 
-Cypress.Commands.add('cadastrarInfracao_CI_ET_Mlg', () => {
+Cypress.Commands.add('cadastrarInfracao_CI_ET_Mlg', (observacao) => {
   cy.get('input[ng-model="data.entidade.codigoInfracao"]').type('51691');
   cy.wait(1000)
   cy.get('input[ng-model="data.entidade.tipificacaoInfracao"]').click();
@@ -29,7 +29,7 @@ Cypress.Commands.add('cadastrarInfracao_CI_ET_Mlg', () => {
   cy.get('input[ng-model="data.entidade.numeroDocumentoInfrator"]').type('00330851101');
   cy.wait(500);
   cy.get('select[ng-model="data.entidade.indicativoAssinatura"]').select('Não');
-  cy.get('textarea[ng-model="data.entidade.observacao"]').type('Veículo MS (Proprietário PF) - Infrações que utilizam equipamentos eletrônicos - etilômetro.');
+  cy.get('textarea[ng-model="data.entidade.observacao"]').type(observacao + '\n- Infrações que utilizam equipamentos eletrônicos - etilômetro.');
 });
 
 describe('Cadastro de auto - Teste alcoolemia Etilômetro mg', () => {
@@ -46,7 +46,7 @@ describe('Cadastro de auto - Teste alcoolemia Etilômetro mg', () => {
         const automovel = dados.automoveis[0];
         cy.acessarCadastroAtendimento();
         cy.InformarDadosInfracao(autoInfracao, automovel.placa, automovel.cpfCnpj)
-        cy.cadastrarInfracao_CI_ET_Mlg();
+        cy.cadastrarInfracao_CI_ET_Mlg(automovel.observacao);
         cy.incluirAgenteAutuador();
         cy.GravarAutoInfracao();
       });
@@ -61,7 +61,7 @@ describe('Cadastro de auto - Teste alcoolemia Etilômetro mg', () => {
           cy.contains('button', 'Novo').should('be.visible').click({ force: true });
           cy.wait(1500);
           cy.InformarDadosInfracao(autoInfracao, automovel.placa, automovel.cpfCnpj)
-          cy.cadastrarInfracao_CI_ET_Mlg();
+          cy.cadastrarInfracao_CI_ET_Mlg(automovel.observacao);
           cy.incluirAgenteAutuador();
           cy.GravarAutoInfracao();
         });
@@ -75,7 +75,7 @@ describe('Cadastro de auto - Teste alcoolemia Etilômetro mg', () => {
           cy.contains('button', 'Novo').should('be.visible').click({ force: true });
           cy.wait(1500);
           cy.InformarDadosInfracao(autoInfracao, automovel.placa, automovel.cpfCnpj)
-          cy.cadastrarInfracao_CI_ET_Mlg();
+          cy.cadastrarInfracao_CI_ET_Mlg(automovel.observacao);
           cy.incluirAgenteAutuador();
           cy.GravarAutoInfracao();
         });
@@ -89,7 +89,7 @@ describe('Cadastro de auto - Teste alcoolemia Etilômetro mg', () => {
           cy.contains('button', 'Novo').should('be.visible').click({ force: true });
           cy.wait(1500);
           cy.InformarDadosInfracao(autoInfracao, automovel.placa, automovel.cpfCnpj)
-          cy.cadastrarInfracao_CI_ET_Mlg();
+          cy.cadastrarInfracao_CI_ET_Mlg(automovel.observacao);
           cy.incluirAgenteAutuador();
           cy.GravarAutoInfracao();
         });

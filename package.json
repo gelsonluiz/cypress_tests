@@ -8,11 +8,11 @@
     "report:merge": "mochawesome-merge cypress/reports/*.json > cypress/reports/output.json",
     "report:generate": "mochawesome-report-generator cypress/reports/output.json --reportDir cypress/reports/html",
     "report": "npm run report:merge && npm run report:generate",
-    "allure:report": "allure generate allure-results --clean -o allure-report && allure open  allure-report",
+    "test:report": "allure generate allure-results --clean -o allure-report && allure open  allure-report",
     "test:clean": "rmdir /s /q allure-results && rmdir /s /q allure-report",
     "e2e": "cypress run --env allure=true --browser chrome",
     "allure:test": "npm run e2e && npm run allure:report",
-    "test:dev": "cypress run --env ambiente=dev",
+    "test:dev": "cypress run --env allure=true --browser chrome ambiente=dev",
     "test:hom": "cypress run --env allure=true --browser chrome ambiente=hom"
   },
   "keywords": [],

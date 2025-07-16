@@ -2,7 +2,7 @@ import { gerarAutoInfracao, gerarPlaca, dataHoje } from '../support/utils';
 
 const tipoTeste = Cypress.env('tipoTeste') || 'completo';
 
-Cypress.Commands.add('cadastrarInfracao_NI_Anexo', () => {
+Cypress.Commands.add('cadastrarInfracao_NI_Anexo', (observacao) => {
   cy.get('input[ng-model="data.entidade.codigoInfracao"]').type('76331');
   cy.wait(1000)
   cy.get('input[ng-model="data.entidade.tipificacaoInfracao"]').click();
@@ -19,7 +19,7 @@ Cypress.Commands.add('cadastrarInfracao_NI_Anexo', () => {
 
   cy.get('select[ng-model="data.entidade.condutorIdentificado"]').select('Não');
   cy.get('select[ng-model="data.entidade.indicativoAssinatura"]').should('be.disabled');
-  cy.get('textarea[ng-model="data.entidade.observacao"]').type('Veículo = MS (Proprietário PJ) - Condutor não identificado');
+  cy.get('textarea[ng-model="data.entidade.observacao"]').type(observacao + '\n- Condutor não identificado');
 });
 
 describe('Cadastro de auto - Condutor não identificado com Anexo', () => {
@@ -35,7 +35,7 @@ describe('Cadastro de auto - Condutor não identificado com Anexo', () => {
         const automovel = dados.automoveis[1];
         cy.acessarCadastroAtendimento();
         cy.InformarDadosInfracao(autoInfracao, automovel.placa, automovel.cpfCnpj)
-        cy.cadastrarInfracao_NI_Anexo();
+        cy.cadastrarInfracao_NI_Anexo(automovel.observacao);
         cy.incluirAgenteAutuador();
         context('Deve anexar um arquivo', () => {
           cy.contains('div.btn-success', 'Anexar').should('be.visible');
@@ -56,7 +56,7 @@ describe('Cadastro de auto - Condutor não identificado com Anexo', () => {
           cy.contains('button', 'Novo').should('be.visible').click({ force: true });
           cy.wait(1500);
           cy.InformarDadosInfracao(autoInfracao, automovel.placa, automovel.cpfCnpj)
-          cy.cadastrarInfracao_NI_Anexo();
+          cy.cadastrarInfracao_NI_Anexo(automovel.observacao);
           cy.incluirAgenteAutuador();
           context('Deve anexar um arquivo', () => {
             cy.contains('div.btn-success', 'Anexar').should('be.visible');
@@ -76,7 +76,7 @@ describe('Cadastro de auto - Condutor não identificado com Anexo', () => {
           cy.contains('button', 'Novo').should('be.visible').click({ force: true });
           cy.wait(1500);
           cy.InformarDadosInfracao(autoInfracao, automovel.placa, automovel.cpfCnpj)
-          cy.cadastrarInfracao_NI_Anexo();
+          cy.cadastrarInfracao_NI_Anexo(automovel.observacao);
           cy.incluirAgenteAutuador();
           context('Deve anexar um arquivo', () => {
             cy.contains('div.btn-success', 'Anexar').should('be.visible');
@@ -96,7 +96,7 @@ describe('Cadastro de auto - Condutor não identificado com Anexo', () => {
           cy.contains('button', 'Novo').should('be.visible').click({ force: true });
           cy.wait(1500);
           cy.InformarDadosInfracao(autoInfracao, automovel.placa, automovel.cpfCnpj)
-          cy.cadastrarInfracao_NI_Anexo();
+          cy.cadastrarInfracao_NI_Anexo(automovel.observacao);
           cy.incluirAgenteAutuador();
           context('Deve anexar um arquivo', () => {
             cy.contains('div.btn-success', 'Anexar').should('be.visible');
